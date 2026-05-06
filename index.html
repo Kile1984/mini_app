@@ -2,13 +2,41 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Mini App</title>
+    <title>Mini Shop</title>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+      }
+
+      nav {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+      }
+
+      button {
+        cursor: pointer;
+      }
+
+      ul {
+        padding: 0;
+      }
+
+      li {
+        list-style: none;
+        margin-bottom: 10px;
+      }
+    </style>
   </head>
+
   <body>
     <nav>
-      <a href="#shop">Shop</a>
-      <a href="#cart">Cart</a>
+      <button data-action="go-shop">Shop</button>
+      <button data-action="go-cart">Cart</button>
     </nav>
+
     <div id="app"></div>
 
     <script type="module" src="./app.js"></script>

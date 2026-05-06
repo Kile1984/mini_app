@@ -1,0 +1,25 @@
+1. Definicija problema :
+
+- prikazuje proizvode
+- korisnik može da doda proizvod u cart
+- može da ode na cart page
+- može da ukloni proizvod iz cart-a
+
+2. User flow
+   SHOP PAGE
+   ↓
+   Add to cart
+   ↓
+   cart state updated
+   ↓
+   Go to cart
+   ↓
+   CART PAGE
+   ↓
+   Remove item
+
+3. Sta app pamti STATE
+4. Sta menja state ACTIONS (goToShop,goToCart,addToCart,removeFromCart)
+5. Controler logika ( menja state, poziva render)
+6. Routing ( menja state.cuurrentView )
+7. View
