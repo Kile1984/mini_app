@@ -1,7 +1,7 @@
-export const cartView = function (parentEl) {
+export const createCartView = function (appEl) {
   return {
-    render(state) {
-      parentEl.innerHTML = `<h1>Cart</h1>`;
+    render() {
+      console.log("Render meetoda u CART VIEW");
     },
   };
 };

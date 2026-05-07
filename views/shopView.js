@@ -1,7 +1,7 @@
-export const shopView = function (parentEl) {
+export const createShopView = function (appEl) {
   return {
     render() {
-      parentEl.innerHTML = `<h1>Shop</h1>`;
+      console.log("Render meetoda u SHOP VIEW");
     },
   };
 };
