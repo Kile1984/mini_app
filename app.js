@@ -6,6 +6,8 @@ import {
   goToShop,
   handleAddToCart,
   handleRemoveFromCart,
+  handleIncrementQuantity,
+  handleDecrementQuantity,
 } from "./controller/controller.js";
 
 const appEl = document.querySelector("#app");
@@ -16,10 +18,12 @@ export const views = {
 };
 
 const actions = {
-  "go-shop": () => goToShop,
-  "go-cart": () => goToCart,
-  "add-cart": (id) => handleAddToCart,
-  "remove-cart": (id) => handleRemoveFromCart,
+  "go-shop": goToShop,
+  "go-cart": goToCart,
+  "add-cart": handleAddToCart,
+  "remove-cart": handleRemoveFromCart,
+  "qt-increment": handleIncrementQuantity,
+  "qt-decrement": handleDecrementQuantity,
 };
 
 document.addEventListener("click", function (e) {
@@ -28,6 +32,7 @@ document.addEventListener("click", function (e) {
   if (!target) return;
 
   const action = target.dataset.action;
+
   const id = Number(target.dataset.id);
 
   actions[action]?.(id);

@@ -18,7 +18,11 @@ export const state = {
     },
   ],
 
-  cart: [],
+  cart: JSON.parse(localStorage.getItem("cart")) || [],
+
+  getCartProductById(id) {
+    return this.cart.find((p) => p.id === id);
+  },
 
   addToCart(id) {
     const product = this.products.find((item) => item.id === id);
@@ -31,6 +35,8 @@ export const state = {
     } else {
       this.cart.push({ ...product, quantity: 1 });
     }
+
+    localStorage.setItem("cart", JSON.stringify(this.cart));
   },
 
   removeFromCart(id) {
@@ -38,11 +44,28 @@ export const state = {
 
     if (!product) return;
 
-    product.quantity--;
+    this.cart = this.cart.filter((p) => p.id !== product.id);
 
-    if (product.quantity <= 0) {
-      this.cart.filter((item) => item.id !== id);
+    localStorage.setItem("cart", JSON.stringify(this.cart));
+  },
+
+  incrementQuantity(id) {
+    const product = this.getCartProductById(id);
+    if (!product) return;
+
+    localStorage.setItem("cart", JSON.stringify(this.cart));
+  },
+
+  decrementQuantity(id, qt) {
+    const product = this.getCartProductById(id);
+
+    if (!product) return;
+
+    if (!Number.isFinite(qt) || qt < 1) {
+      this.removeFromCart(id);
     }
+
+    localStorage.setItem("cart", JSON.stringify(this.cart));
   },
 
   setView(view) {

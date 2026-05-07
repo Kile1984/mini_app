@@ -23,3 +23,14 @@
 5. Controler logika ( menja state, poziva render)
 6. Routing ( menja state.cuurrentView )
 7. View
+
+SLEDECE:
+🚀 Sledeći upgrade ideje
+update() umesto full render()
+quantity buttons (+ / -)
+localStorage persistence
+modal system
+reusable BaseView class
+pub/sub event bus
+async fetch products
+loading / error state

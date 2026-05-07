@@ -1,15 +1,12 @@
-// goToShop,goToCart,addToCart,removeFromCart
 import { state } from "../state/state.js";
 import { render } from "../core/render.js";
 
 export const goToShop = function () {
   window.location.hash = "#shop";
-  render();
 };
 
 export const goToCart = function () {
   window.location.hash = "#cart";
-  render();
 };
 
 export const handleAddToCart = function (id) {
@@ -19,6 +16,22 @@ export const handleAddToCart = function (id) {
 
 export const handleRemoveFromCart = function (id) {
   state.removeFromCart(id);
+  render();
+};
+
+export const handleIncrementQuantity = function (id) {
+  const product = state.getCartProductById(id);
+  product.quantity++;
+  state.incrementQuantity(id, product.quantity);
+
+  render();
+};
+
+export const handleDecrementQuantity = function (id) {
+  const product = state.getCartProductById(id);
+  product.quantity--;
+  state.decrementQuantity(id, product.quantity);
+
   render();
 };
 
