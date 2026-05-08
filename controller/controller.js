@@ -22,6 +22,7 @@ export const handleRemoveFromCart = function (id) {
 export const handleIncrementQuantity = function (id) {
   const product = state.getCartProductById(id);
   product.quantity++;
+
   state.incrementQuantity(id, product.quantity);
 
   render();
@@ -30,6 +31,7 @@ export const handleIncrementQuantity = function (id) {
 export const handleDecrementQuantity = function (id) {
   const product = state.getCartProductById(id);
   product.quantity--;
+
   state.decrementQuantity(id, product.quantity);
 
   render();
