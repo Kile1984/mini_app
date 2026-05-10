@@ -2,12 +2,9 @@ import { handleRoute } from "./core/router.js";
 import { createShopView } from "./views/shopView.js";
 import { createCartView } from "./views/cartView.js";
 import {
-  goToCart,
-  goToShop,
-  handleAddToCart,
-  handleRemoveFromCart,
-  handleIncrementQuantity,
-  handleDecrementQuantity,
+  goToPage,
+  handleToggleCart,
+  handleQuantity,
 } from "./controller/controller.js";
 
 const appEl = document.querySelector("#app");
@@ -18,12 +15,11 @@ export const views = {
 };
 
 const actions = {
-  "go-shop": goToShop,
-  "go-cart": goToCart,
-  "add-cart": handleAddToCart,
-  "remove-cart": handleRemoveFromCart,
-  "qt-increment": handleIncrementQuantity,
-  "qt-decrement": handleDecrementQuantity,
+  "go-to-page": goToPage,
+  "add-cart": handleToggleCart,
+  "remove-cart": handleToggleCart,
+  "qt-increment": handleQuantity,
+  "qt-decrement": handleQuantity,
 };
 
 document.addEventListener("click", function (e) {
@@ -32,10 +28,14 @@ document.addEventListener("click", function (e) {
   if (!target) return;
 
   const action = target.dataset.action;
-
   const id = Number(target.dataset.id);
+  const page = target.dataset.page;
 
-  actions[action]?.(id);
+  actions[action]?.({
+    id,
+    page,
+    action,
+  });
 });
 
 window.addEventListener("load", handleRoute);

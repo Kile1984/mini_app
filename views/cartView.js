@@ -2,7 +2,7 @@ export const createCartView = function (appEl) {
   return {
     render(state) {
       const markup = `
-       <h1>Shop</h1>
+       <h1>Cart</h1>
         <ul>
         ${state.cart
           .map(
@@ -17,6 +17,7 @@ export const createCartView = function (appEl) {
               <button
                 data-action="qt-increment"
                 data-id="${p.id}"
+                data-qt-action="inc"
               >
                 +
               </button>
@@ -24,6 +25,7 @@ export const createCartView = function (appEl) {
                  <button
                 data-action="qt-decrement"
                 data-id="${p.id}"
+                data-qt-action="dec"
               >
                -
               </button>
@@ -31,6 +33,7 @@ export const createCartView = function (appEl) {
               <button
                 data-action="remove-cart"
                 data-id="${p.id}"
+                data-cart-action="remove"
               >
                 X
               </button>

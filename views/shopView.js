@@ -15,6 +15,7 @@ export const createShopView = function (appEl) {
               <button
                 data-action="add-cart"
                 data-id="${p.id}"
+                data-cart-action="add"
               >
                 Add to cart
               </button>

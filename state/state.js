@@ -24,6 +24,10 @@ export const state = {
     return this.cart.find((p) => p.id === id);
   },
 
+  saveCart() {
+    localStorage.setItem("cart", JSON.stringify(this.cart));
+  },
+
   addToCart(id) {
     const product = this.products.find((item) => item.id === id);
     if (!product) return;
@@ -36,7 +40,7 @@ export const state = {
       this.cart.push({ ...product, quantity: 1 });
     }
 
-    localStorage.setItem("cart", JSON.stringify(this.cart));
+    this.saveCart();
   },
 
   removeFromCart(id) {
@@ -46,26 +50,31 @@ export const state = {
 
     this.cart = this.cart.filter((p) => p.id !== product.id);
 
-    localStorage.setItem("cart", JSON.stringify(this.cart));
+    this.saveCart();
   },
 
   incrementQuantity(id) {
     const product = this.getCartProductById(id);
     if (!product) return;
 
-    localStorage.setItem("cart", JSON.stringify(this.cart));
+    product.quantity++;
+
+    this.saveCart();
   },
 
-  decrementQuantity(id, qt) {
+  decrementQuantity(id) {
     const product = this.getCartProductById(id);
 
     if (!product) return;
 
-    if (!Number.isFinite(qt) || qt < 1) {
+    product.quantity--;
+
+    if (product.quantity < 1) {
       this.removeFromCart(id);
+      return;
     }
 
-    localStorage.setItem("cart", JSON.stringify(this.cart));
+    this.saveCart();
   },
 
   setView(view) {

@@ -6,12 +6,6 @@ export const handleRoute = function () {
 
   const validRoutes = ["shop", "cart"];
 
-  // if (!validRoutes.includes(hash)) {
-  //   state.setView("shop");
-  // } else {
-  //   state.setView(hash);
-  // }
-
   validRoutes.includes(hash) ? state.setView(hash) : state.setView("shop");
 
   render();
