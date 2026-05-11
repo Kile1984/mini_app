@@ -1,6 +1,11 @@
 export const createCartView = function (appEl) {
   return {
     render(state) {
+      if (!state.cart.length) {
+        appEl.innerHTML = "<p>Cart is empty</p>";
+        return;
+      }
+
       const markup = `
        <h1>Cart</h1>
         <ul>

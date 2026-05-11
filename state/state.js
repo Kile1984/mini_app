@@ -1,22 +1,8 @@
 export const state = {
   currentView: "shop",
-  products: [
-    {
-      id: 1,
-      name: "Laptop",
-      price: 1000,
-    },
-    {
-      id: 2,
-      name: "Phone",
-      price: 500,
-    },
-    {
-      id: 3,
-      name: "Headphones",
-      price: 200,
-    },
-  ],
+  loading: false,
+  error: null,
+  products: [],
 
   cart: JSON.parse(localStorage.getItem("cart")) || [],
 
@@ -79,5 +65,13 @@ export const state = {
 
   setView(view) {
     this.currentView = view;
+  },
+
+  setLoading(isLoading) {
+    this.loading = isLoading;
+  },
+
+  setError(error) {
+    this.error = error;
   },
 };

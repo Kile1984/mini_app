@@ -1,6 +1,16 @@
 export const createShopView = function (appEl) {
   return {
     render(state) {
+      if (state.loading) {
+        appEl.innerHTML = "<p>Loading...</p>";
+        return;
+      }
+
+      if (state.error) {
+        appEl.innerHTML = `<p>Error: ${state.error}</p>`;
+        return;
+      }
+
       const markup = `
        <h1>Shop</h1>
         <ul>

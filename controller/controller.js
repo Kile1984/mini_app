@@ -1,5 +1,21 @@
 import { state } from "../state/state.js";
 import { render } from "../core/render.js";
+import { fetchProducts } from "../api/productsApi.js";
+
+export async function loadProducts() {
+  try {
+    state.setLoading(true);
+    render();
+
+    const products = await fetchProducts();
+    state.products = products;
+  } catch (err) {
+    state.setError("Failed to load products.");
+  } finally {
+    state.setLoading(false);
+    render();
+  }
+}
 
 export const goToPage = function ({ page }) {
   window.location.hash = `#${page}`;
