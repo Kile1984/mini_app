@@ -1,4 +1,4 @@
-import { views } from "../app.js";
+import { views } from "../views/views.js";
 import { state } from "../state/state.js";
 
 export const render = function () {

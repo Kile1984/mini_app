@@ -11,7 +11,7 @@ export const handleRoute = async function () {
 
   if (state.currentView === "shop") {
     await loadProducts();
+    return;
   }
-
   render();
 };

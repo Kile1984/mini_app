@@ -1,18 +1,9 @@
 import { handleRoute } from "./core/router.js";
-import { createShopView } from "./views/shopView.js";
-import { createCartView } from "./views/cartView.js";
 import {
   goToPage,
   handleToggleCart,
   handleQuantity,
 } from "./controller/controller.js";
-
-const appEl = document.querySelector("#app");
-
-export const views = {
-  shop: createShopView(appEl),
-  cart: createCartView(appEl),
-};
 
 const actions = {
   "go-to-page": goToPage,

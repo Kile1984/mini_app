@@ -1,6 +1,7 @@
 import { state } from "../state/state.js";
 import { render } from "../core/render.js";
 import { fetchProducts } from "../api/productsApi.js";
+import { views } from "../views/views.js";
 
 export async function loadProducts() {
   try {
@@ -32,11 +33,19 @@ export const handleToggleCart = function ({ id, action }) {
 };
 
 export const handleQuantity = function ({ id, action }) {
-  if (action === "qt-increment") {
-    state.incrementQuantity(id);
-  } else {
-    state.decrementQuantity(id);
+  const actions = {
+    "qt-increment": () => state.incrementQuantity(id),
+    "qt-decrement": () => state.decrementQuantity(id),
+  };
+
+  actions[action]?.();
+
+  const product = state.getCartProductById(id);
+
+  if (!product) {
+    render();
+    return;
   }
 
-  render();
+  views.cart.updateQuantity({ id, quantity: product.quantity });
 };
