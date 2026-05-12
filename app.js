@@ -1,23 +1,23 @@
 import { handleRoute } from "./core/router.js";
 import {
   goToPage,
-  handleToggleCart,
-  handleQuantity,
+  controlAddToCart,
+  controlQuantity,
+  controlRemoveFromCart,
 } from "./controller/controller.js";
 
 const actions = {
   "go-to-page": goToPage,
-  "add-cart": handleToggleCart,
-  "remove-cart": handleToggleCart,
-  "qt-increment": handleQuantity,
-  "qt-decrement": handleQuantity,
+  "add-cart": controlAddToCart,
+  "remove-cart": controlRemoveFromCart,
+  "qt-increment": controlQuantity,
+  "qt-decrement": controlQuantity,
 };
 
 document.addEventListener("click", function (e) {
   const target = e.target.closest("[data-action]");
 
   if (!target) return;
-
   const action = target.dataset.action;
   const id = Number(target.dataset.id);
   const page = target.dataset.page;

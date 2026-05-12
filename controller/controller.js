@@ -22,17 +22,13 @@ export const goToPage = function ({ page }) {
   window.location.hash = `#${page}`;
 };
 
-export const handleToggleCart = function ({ id, action }) {
-  if (action === "add-cart") {
-    state.addToCart(id);
-  } else {
-    state.removeFromCart(id);
-  }
+export const controlAddToCart = function ({ id, action }) {
+  state.addToCart(id);
 
-  render();
+  // render();
 };
 
-export const handleQuantity = function ({ id, action }) {
+export const controlQuantity = function ({ id, action }) {
   const actions = {
     "qt-increment": () => state.incrementQuantity(id),
     "qt-decrement": () => state.decrementQuantity(id),
@@ -43,9 +39,15 @@ export const handleQuantity = function ({ id, action }) {
   const product = state.getCartProductById(id);
 
   if (!product) {
-    render();
+    controlRemoveFromCart({ id });
+
     return;
   }
 
   views.cart.updateQuantity({ id, quantity: product.quantity });
+};
+
+export const controlRemoveFromCart = function ({ id }) {
+  state.removeFromCart(id);
+  views.cart.removeItem(id);
 };

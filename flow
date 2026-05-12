@@ -34,3 +34,6 @@ reusable BaseView class
 pub/sub event bus
 async fetch products
 loading / error state
+
+ADD TO CART remove render
+QUANTITY = 0 remove render and add removeFromCart(ID)

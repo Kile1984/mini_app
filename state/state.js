@@ -30,11 +30,7 @@ export const state = {
   },
 
   removeFromCart(id) {
-    const product = this.cart.find((item) => item.id === id);
-
-    if (!product) return;
-
-    this.cart = this.cart.filter((p) => p.id !== product.id);
+    this.cart = this.cart.filter((p) => p.id !== id);
 
     this.saveCart();
   },

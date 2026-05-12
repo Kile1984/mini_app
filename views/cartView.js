@@ -1,12 +1,17 @@
 export const createCartView = function (appEl) {
   return {
     updateQuantity({ id, quantity }) {
-      console.log(quantity);
       const qtEl = appEl.querySelector(`[data-quantity-id="${id}"]`);
       if (!qtEl) return;
 
       qtEl.textContent = `QT: ${quantity}`;
     },
+
+    removeItem(id) {
+      const itemEl = appEl.querySelector(`[data-id="${id}"]`);
+      itemEl?.remove();
+    },
+
     render(state) {
       if (!state.cart.length) {
         appEl.innerHTML = "<p>Cart is empty</p>";
@@ -19,7 +24,7 @@ export const createCartView = function (appEl) {
         ${state.cart
           .map(
             (p) => `
-           <li>
+           <li data-id="${p.id}">
             <span>ID: ${p.id}</span>
             <strong>${p.name}</strong>
              <span>ID: ${p.price}</span>
